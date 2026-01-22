@@ -1,0 +1,18 @@
+meta {
+  name: Create Watchlist Item
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/watchlist
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Drakethyst Armguards",
+    "type": "Armor"
+  }
+}

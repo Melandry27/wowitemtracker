@@ -1,0 +1,50 @@
+meta {
+  name: Get Item by ID
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{apiUrl}}/items/:id
+  body: none
+  auth: none
+}
+
+params:path {
+  id: 679151c8e4b0a1234567890a
+}
+
+docs {
+  # Récupérer un item par son ID
+  
+  ## Path Parameters
+  - `id`: MongoDB ObjectId de l'item
+  
+  ## Réponse Succès (200)
+  ```json
+  {
+    "success": true,
+    "data": {
+      "_id": "...",
+      "name": "Épée du Chevalier",
+      "type": "Weapon",
+      "purchasePrice": 150,
+      "purchaseDate": "2026-01-22T10:00:00.000Z",
+      "salePrice": null,
+      "saleDate": null,
+      "status": "owned",
+      "profit": null,
+      "createdAt": "...",
+      "updatedAt": "..."
+    }
+  }
+  ```
+  
+  ## Réponse Erreur (404)
+  ```json
+  {
+    "success": false,
+    "error": "Item non trouvé"
+  }
+  ```
+}

@@ -4,6 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import connectDB from "./config/database.js";
 import itemRoutes from "./routes/items.js";
+import watchlistRoutes from "./routes/watchlist.js";
 import errorHandler from "./middleware/errorHandler.js";
 
 // Configuration
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/items", itemRoutes);
+app.use("/api/watchlist", watchlistRoutes);
 
 // Gestion des erreurs 404
 app.use((req, res) => {

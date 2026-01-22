@@ -1,0 +1,22 @@
+meta {
+  name: Update Watchlist Item
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/watchlist/:id
+  body: json
+  auth: none
+}
+
+params:path {
+  id: 
+}
+
+body:json {
+  {
+    "name": "Drakethyst Armguards Updated",
+    "type": "Weapon"
+  }
+}

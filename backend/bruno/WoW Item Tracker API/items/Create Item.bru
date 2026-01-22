@@ -1,0 +1,41 @@
+meta {
+  name: Create Item
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{apiUrl}}/items
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Épée du Chevalier",
+    "type": "Weapon",
+    "purchasePrice": 150,
+    "purchaseDate": "2026-01-22T10:00:00Z"
+  }
+}
+
+docs {
+  # Créer un nouvel item
+  
+  ## Body (JSON)
+  - `name` (string, required): Nom de l'item
+  - `type` (string, required): Armor | Weapon | Accessory | Consumable | Crafting Material | Quest Item | Other
+  - `purchasePrice` (number, required): Prix d'achat en or (≥0)
+  - `purchaseDate` (date, optional): Date d'achat (défaut: maintenant)
+  - `salePrice` (number, optional): Prix de vente
+  - `saleDate` (date, optional): Date de vente
+  
+  ## Réponse
+  ```json
+  {
+    "success": true,
+    "data": {...},
+    "message": "Item créé avec succès"
+  }
+  ```
+}
