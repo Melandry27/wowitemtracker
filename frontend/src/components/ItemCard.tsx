@@ -37,7 +37,9 @@ export const ItemCard: React.FC<ItemCardProps> = ({
             <CardTitle>{item.name}</CardTitle>
             <CardDescription>{item.type}</CardDescription>
           </div>
-          <Badge variant={isOwned ? "default" : "secondary"}>
+          <Badge
+            variant={isOwned ? "default" : "secondary"}
+            className={isOwned ? "text-rare" : "text-uncommon"}>
             {isOwned ? "Owned" : "Sold"}
           </Badge>
         </div>
@@ -79,7 +81,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
               <div className="flex justify-between border-t pt-2">
                 <span className="text-sm font-semibold">Profit:</span>
                 <span
-                  className={`font-semibold ${profit >= 0 ? "text-green-600" : "text-red-600"}`}>
+                  className={`font-semibold ${profit >= 0 ? "text-uncommon" : "text-epic"}`}>
                   {profit >= 0 ? "+" : ""}
                   {profit}g
                 </span>

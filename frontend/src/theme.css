@@ -1,0 +1,284 @@
+@import "tailwindcss";
+/* Ajout de MedievalSharp pour remplacer "Morpheus" (Titres de quêtes/Courrier) */
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;700&family=MedievalSharp&display=swap");
+
+:root {
+  /* --- BACKGROUNDS (L'ambiance Interface) --- */
+  /* Le fond bleu nuit très sombre des tooltips et frames WoW */
+  --bg-world: #050614;
+  --bg-frame: #111116; /* Fond des fenêtres */
+  --bg-parchment: #e3d5b6; /* Fond papier journal de quêtes (pour variante clair) */
+  --bg-slot: #181818; /* Fond d'un slot d'inventaire vide */
+
+  /* --- BORDURES & MÉTAUX --- */
+  --border-silver: #a3a3a3; /* Bordure de tooltip standard */
+  --border-gold: #b39348; /* Bordure de fenêtre de dialogue */
+  --border-gold-bright: #eecf6e; /* Éclat doré */
+
+  /* --- TEXTE (Hierarchie WoW) --- */
+  --text-normal: #ffffff; /* Texte standard (Chat, Stats) */
+  --text-quest: #2f2010; /* Texte sur parchemin (Sombre) */
+  --text-gold: #ffd100; /* Le Jaune WoW iconique (Titres, Or) */
+  --text-label: #fbdc66; /* Labels "Niveau", "Classe" */
+  --text-muted: #808080; /* Gris item pauvre / désactivé */
+
+  /* --- RARÉTÉ DES ITEMS (Codes Hex Officiels Vanilla) --- */
+  --quality-poor: #9d9d9d; /* Gris */
+  --quality-common: #ffffff; /* Blanc */
+  --quality-uncommon: #1eff00; /* Vert */
+  --quality-rare: #0070dd; /* Bleu */
+  --quality-epic: #a335ee; /* Violet */
+  --quality-legendary: #ff8000; /* Orange */
+  --quality-artifact: #e6cc80; /* Or pâle (Héritage/Artifact) */
+
+  /* --- ÉTATS & CLASSES --- */
+  --color-success: #1eff00; /* Similaire à Uncommon */
+  --color-error: #ff2020; /* Rouge erreur interface */
+  --color-horde: #8c1616;
+  --color-alliance: #142e66;
+
+  /* --- FONTS --- */
+  /* "MedievalSharp" remplace Morpheus (Titres) */
+  --font-warcraft: "MedievalSharp", cursive;
+  /* "EB Garamond" remplace Friz Quadrata (Corps de texte RP) */
+  --font-serif: "EB Garamond", serif;
+  /* "Inter" pour les chiffres et l'UI pure (Lisibilité) */
+  --font-ui: "Inter", sans-serif;
+
+  /* --- SPACING & EFFECTS --- */
+  --radius-wow: 3px; /* Très peu d'arrondi dans WoW */
+  --shadow-text: 1px 1px 0px #000000; /* L'ombre dure omniprésente sur le texte */
+}
+
+/* BASE */
+body {
+  background-color: var(--bg-world);
+  background-image: radial-gradient(
+    circle at center,
+    #1a1c29 0%,
+    #050614 100%
+  ); /* Vignette subtile */
+  color: var(--text-normal);
+  font-family: var(--font-ui);
+  line-height: 1.5;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* TITRES : Style "Quest Log" */
+h1,
+h2,
+h3 {
+  font-family: var(--font-warcraft);
+  color: var(--text-gold);
+  text-shadow: 2px 2px 0px #000; /* Ombre plus lourde pour les titres */
+  font-weight: 400; /* MedievalSharp est déjà gras visuellement */
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.1;
+}
+h2 {
+  font-size: 1.75rem;
+  color: var(--text-normal);
+} /* Souvent blanc dans les sous-menus */
+
+/* TEXTE RICHE / QUÊTE */
+p {
+  margin-bottom: 1rem;
+}
+.quest-text {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: #e0d8b8; /* Une couleur crème plus douce pour la lecture */
+  line-height: 1.6;
+}
+
+/* CONTENEUR */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* CARDS : Style "Game Tooltip" & "Dialog Frame" */
+.card {
+  background-color: rgba(17, 17, 22, 0.95); /* Opacité comme dans le jeu */
+  border: 1px solid var(--border-silver); /* Bordure simple et fine style Tooltip */
+  border-radius: var(--radius-wow);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 1),
+    /* Double bordure noire pour effet "inset" */ 0 8px 24px rgba(0, 0, 0, 0.8);
+  margin-bottom: 2rem;
+  backdrop-filter: blur(4px);
+}
+
+/* Variante : Cadre Doré (Style fenêtre de personnage) */
+.card.gold-frame {
+  border-color: var(--border-gold);
+  background: linear-gradient(to bottom, #1e1e24 0%, #111116 100%);
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.8),
+    0 0 0 1px #000,
+    0 10px 30px rgba(0, 0, 0, 0.9);
+}
+
+.card-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.card-content {
+  padding: 2rem;
+}
+
+/* BADGE (Statut d'item) */
+.badge {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-wow);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: var(--shadow-text);
+  border: 1px solid;
+}
+
+/* BOUTONS : Le fameux bouton rouge "Main Menu" */
+.btn {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: #ffd100;
+  text-shadow: 1px 1px 0 #000;
+
+  /* Le dégradé Rouge/Brun WoW */
+  background: linear-gradient(180deg, #8a2be2 0%, #4a0080 0%); /* Fallback */
+  background: linear-gradient(to bottom, #7e0c0c 0%, #4a0505 100%);
+
+  border: 1px solid #c99335;
+  border-top-color: #eecf6e; /* Lumière venant du haut */
+  border-bottom-color: #583c11; /* Ombre en bas */
+
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px; /* Un peu plus arrondi pour les boutons */
+  box-shadow:
+    inset 0 0 5px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: filter 0.1s;
+}
+
+/* Variante : Bouton Gris (Annuler/Secondaire) */
+.btn-secondary {
+  background: linear-gradient(to bottom, #4a4a4a 0%, #2a2a2a 100%);
+  border-color: #999;
+  border-top-color: #ccc;
+  border-bottom-color: #111;
+  color: #fff;
+}
+
+.btn:hover {
+  filter: brightness(1.25);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  background: linear-gradient(to bottom, #4a0505 0%, #300000 100%);
+  border-color: #583c11;
+}
+
+/* INPUTS : Style "Chat Box" */
+input,
+textarea,
+select {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid #444;
+  border-top-color: #333;
+  border-bottom-color: #666; /* Effet "inset" inversé */
+  color: white;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  font-family: var(--font-ui);
+  border-radius: 2px;
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.2s;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--text-gold);
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* LABELS & DÉTAILS */
+label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-gold); /* Les labels sont souvent dorés dans les options */
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/* CLASSES UTILITAIRES POUR ITEMS */
+.text-epic {
+  color: var(--quality-epic) !important;
+  text-shadow: 0 0 5px rgba(163, 53, 238, 0.4);
+}
+.text-rare {
+  color: var(--quality-rare) !important;
+  text-shadow: 0 0 5px rgba(0, 112, 221, 0.4);
+}
+.text-uncommon {
+  color: var(--quality-uncommon) !important;
+}
+.text-legendary {
+  color: var(--quality-legendary) !important;
+  text-shadow: 0 0 8px rgba(255, 128, 0, 0.6);
+}
+
+/* BARRE DE PROGRESSION (XP / HP Style) */
+.wow-bar {
+  height: 20px;
+  background: #111;
+  border: 1px solid #555;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wow-bar-fill {
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    #00c600 0%,
+    #007500 100%
+  ); /* XP Vert */
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.3);
+}
+
+/* EFFET DE PARCHEMIN (Pour les logs de quête) */
+.paper-bg {
+  background-color: var(--bg-parchment);
+  color: var(--text-quest);
+  border: 1px solid #7a5c36;
+  padding: 2rem;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.paper-bg h1,
+.paper-bg h2 {
+  color: #4a2e10; /* Encre brune */
+  text-shadow: none;
+}

@@ -17,7 +17,7 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ stats, isLoading }) => {
     return (
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {[...Array(4)].map((_, i) => (
-          <div key={i} className="h-32 animate-pulse rounded-lg bg-muted" />
+          <div key={i} className="h-32 rounded-lg skeleton" />
         ))}
       </div>
     );
@@ -32,7 +32,14 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ stats, isLoading }) => {
           <CardTitle className="text-sm font-medium">Total Items</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{stats.totalItems}</div>
+          <div
+            className="text-4xl font-bold"
+            style={{
+              color: "var(--text-gold)",
+              textShadow: "var(--shadow-text)",
+            }}>
+            {stats.totalItems}
+          </div>
           <p className="text-xs text-muted-foreground">
             {stats.ownedItems} owned, {stats.soldItems} sold
           </p>
@@ -46,7 +53,14 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ stats, isLoading }) => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{stats.totalInvestment}g</div>
+          <div
+            className="text-4xl font-bold"
+            style={{
+              color: "var(--text-gold)",
+              textShadow: "var(--shadow-text)",
+            }}>
+            {stats.totalInvestment}g
+          </div>
           <p className="text-xs text-muted-foreground">Money spent on items</p>
         </CardContent>
       </Card>
@@ -56,7 +70,14 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ stats, isLoading }) => {
           <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{stats.totalRevenue}g</div>
+          <div
+            className="text-4xl font-bold"
+            style={{
+              color: "var(--text-gold)",
+              textShadow: "var(--shadow-text)",
+            }}>
+            {stats.totalRevenue}g
+          </div>
           <p className="text-xs text-muted-foreground">
             Money earned from sales
           </p>
@@ -69,7 +90,7 @@ export const StatsCards: React.FC<StatsCardsProps> = ({ stats, isLoading }) => {
         </CardHeader>
         <CardContent>
           <div
-            className={`text-2xl font-bold ${stats.totalProfit >= 0 ? "text-green-600" : "text-red-600"}`}>
+            className={`text-4xl font-bold ${stats.totalProfit >= 0 ? "text-uncommon" : "text-epic"}`}>
             {stats.totalProfit >= 0 ? "+" : ""}
             {stats.totalProfit}g
           </div>

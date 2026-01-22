@@ -1,34 +1,38 @@
+<div align="right">
+  <a href="README.fr.md"><strong>🇫🇷 Français</strong></a>
+</div>
+
 # WoW Item Tracker
 
-Application full-stack de suivi d'inventaire/trading pour World of Warcraft Anniversary Edition.
+Full-stack inventory/trading tracking application for World of Warcraft Anniversary Edition.
 
-## 📋 Vue d'ensemble
+## 📋 Overview
 
-Cette application permet de suivre les achats et ventes d'items avec calcul automatique des profits. Elle se compose d'un backend API REST (Express + MongoDB) et d'un frontend React moderne.
+This application allows you to track item purchases and sales with automatic profit calculation. It consists of a REST API backend (Express + MongoDB) and a modern React frontend.
 
-## 🚀 Stack Technologique
+## 🚀 Tech Stack
 
 ### Backend
 
-- **Express 5.1.0** - Framework serveur
-- **MongoDB 8.0** - Base de données NoSQL
-- **Mongoose** - ODM pour MongoDB
-- **Node.js ≥ 18** - Runtime JavaScript
+- **Express 5.1.0** - Server framework
+- **MongoDB 8.0** - NoSQL database
+- **Mongoose** - MongoDB ODM
+- **Node.js ≥ 18** - JavaScript runtime
 
 ### Frontend
 
-- **React 19** - Bibliothèque UI
-- **TypeScript** - Typage statique
-- **Vite** - Build tool ultra-rapide
-- **TanStack Query** - Gestion des requêtes API
-- **shadcn/ui** - Composants UI (Radix + Tailwind CSS v4)
-- **Axios** - Client HTTP
+- **React 19** - UI library
+- **TypeScript** - Static typing
+- **Vite** - Ultra-fast build tool
+- **TanStack Query** - API request management
+- **shadcn/ui** - UI components (Radix + Tailwind CSS v4)
+- **Axios** - HTTP client
 
-## 📁 Structure du Projet
+## 📁 Project Structure
 
 ```
 wowitemtracker/
-├── backend/           # API Express
+├── backend/           # Express API
 │   ├── src/
 │   │   ├── server.js
 │   │   ├── config/
@@ -38,7 +42,7 @@ wowitemtracker/
 │   │   └── routes/
 │   └── package.json
 │
-├── frontend/          # Application React
+├── frontend/          # React Application
 │   ├── src/
 │   │   ├── components/
 │   │   ├── contexts/
@@ -48,16 +52,16 @@ wowitemtracker/
 │   │   └── config/
 │   └── package.json
 │
-└── bruno/            # Collection API Bruno
+└── bruno/            # Bruno API Collection
 ```
 
 ## ⚙️ Installation
 
-### Prérequis
+### Prerequisites
 
 - Node.js >= 18
-- MongoDB 8.0 (local ou distant)
-- npm ou yarn
+- MongoDB 8.0 (local or remote)
+- npm or yarn
 
 ### 1. Backend
 
@@ -65,7 +69,7 @@ wowitemtracker/
 cd backend
 npm install
 
-# Créer un fichier .env
+# Create .env file
 cat > .env << EOF
 NODE_ENV=development
 PORT=5000
@@ -73,11 +77,11 @@ MONGODB_URI=mongodb://localhost:27017/wow-items
 CORS_ORIGIN=http://localhost:5173
 EOF
 
-# Démarrer le serveur
+# Start the server
 npm run dev
 ```
 
-Le serveur sera disponible sur `http://localhost:5000`
+The server will be available at `http://localhost:5000`
 
 ### 2. Frontend
 
@@ -85,40 +89,40 @@ Le serveur sera disponible sur `http://localhost:5000`
 cd frontend
 npm install
 
-# Créer un fichier .env
+# Create .env file
 cat > .env << EOF
 VITE_API_URL=http://localhost:5000
 EOF
 
-# Démarrer l'application
+# Start the application
 npm run dev
 ```
 
-L'application sera disponible sur `http://localhost:5173`
+The application will be available at `http://localhost:5173`
 
-## 🎯 Fonctionnalités
+## 🎯 Features
 
-- ✅ **CRUD Items** - Créer, lire, modifier, supprimer des items
-- ✅ **Gestion des Ventes** - Marquer un item comme vendu avec prix et date
-- ✅ **Statistiques** - Vue d'ensemble des investissements et profits
-- ✅ **Filtres** - Par type d'item, statut (owned/sold), recherche textuelle
-- ✅ **Interface Responsive** - Fonctionne sur desktop et mobile
-- ✅ **Validation** - Validation côté client et serveur
-- ✅ **Gestion d'Erreurs** - Messages d'erreur clairs et toasts de notification
+- ✅ **CRUD Items** - Create, read, update, delete items
+- ✅ **Sales Management** - Mark an item as sold with price and date
+- ✅ **Statistics** - Overview of investments and profits
+- ✅ **Filters** - By item type, status (owned/sold), text search
+- ✅ **Responsive Interface** - Works on desktop and mobile
+- ✅ **Validation** - Client-side and server-side validation
+- ✅ **Error Handling** - Clear error messages and notification toasts
 
-## 📊 Modèle de Données
+## 📊 Data Model
 
 ### Item
 
 ```typescript
 {
   _id: string
-  name: string           // Nom de l'item
+  name: string           // Item name
   type: string           // Type (Armor, Weapon, etc.)
-  purchasePrice: number  // Prix d'achat
-  purchaseDate: Date     // Date d'achat
-  salePrice?: number     // Prix de vente (optionnel)
-  saleDate?: Date        // Date de vente (optionnel)
+  purchasePrice: number  // Purchase price
+  purchaseDate: Date     // Purchase date
+  salePrice?: number     // Sale price (optional)
+  saleDate?: Date        // Sale date (optional)
   status: string         // "owned" | "sold"
   createdAt: Date
   updatedAt: Date
@@ -128,58 +132,58 @@ L'application sera disponible sur `http://localhost:5173`
 ## 🔌 API Endpoints
 
 ```
-GET    /api/items              # Liste tous les items
-POST   /api/items              # Crée un item
-GET    /api/items/stats        # Statistiques
-GET    /api/items/:id          # Récupère un item
-PUT    /api/items/:id          # Met à jour un item
-DELETE /api/items/:id          # Supprime un item
+GET    /api/items              # List all items
+POST   /api/items              # Create an item
+GET    /api/items/stats        # Statistics
+GET    /api/items/:id          # Get an item
+PUT    /api/items/:id          # Update an item
+DELETE /api/items/:id          # Delete an item
 GET    /api/health             # Health check
 ```
 
-## 🧪 Tests API
+## 🧪 API Testing
 
-Une collection Bruno est fournie dans le dossier `bruno/` pour tester l'API facilement.
+A Bruno collection is provided in the `bruno/` folder for easy API testing.
 
 ```bash
 cd bruno/WoW\ Item\ Tracker\ API
-# Utiliser Bruno Desktop ou CLI
+# Use Bruno Desktop or CLI
 ```
 
-## 🏗️ Architecture Frontend
+## 🏗️ Frontend Architecture
 
-### Hooks Personnalisés
+### Custom Hooks
 
-#### Hooks de Données (API)
+#### Data Hooks (API)
 
-- `useItems()` - Liste des items avec filtres
-- `useItemsStats()` - Statistiques globales
-- `useCreateItem()` - Créer un item
-- `useUpdateItem()` - Mettre à jour un item
-- `useDeleteItem()` - Supprimer un item
+- `useItems()` - List items with filters
+- `useItemsStats()` - Global statistics
+- `useCreateItem()` - Create an item
+- `useUpdateItem()` - Update an item
+- `useDeleteItem()` - Delete an item
 
-#### Hooks d'État UI
+#### UI State Hooks
 
-- `useDialog()` - Gérer l'ouverture/fermeture des dialogs
-- `useForm()` - Formulaires avec validation
-- `useItemFilters()` - Filtres globaux
+- `useDialog()` - Manage dialog open/close
+- `useForm()` - Forms with validation
+- `useItemFilters()` - Global filters
 - `useToast()` - Notifications
 
 ### Contexts
 
 - **QueryClientProvider** - TanStack Query
-- **ToastProvider** - Notifications globales
-- **ItemFiltersProvider** - Filtres partagés
+- **ToastProvider** - Global notifications
+- **ItemFiltersProvider** - Shared filters
 
-## 🎨 Composants Principaux
+## 🎨 Main Components
 
-- `Dashboard` - Vue principale
-- `ItemCard` - Carte d'affichage d'un item
-- `ItemList` - Liste des items avec loading states
-- `ItemFormDialog` - Formulaire création/édition
-- `MarkAsSoldDialog` - Dialog pour marquer comme vendu
-- `StatsCards` - Cartes de statistiques
-- `ItemFilters` - Barre de filtres
+- `Dashboard` - Main view
+- `ItemCard` - Item display card
+- `ItemList` - Items list with loading states
+- `ItemFormDialog` - Create/edit form
+- `MarkAsSoldDialog` - Dialog to mark as sold
+- `StatsCards` - Statistics cards
+- `ItemFilters` - Filters bar
 
 ## 🚢 Production
 
@@ -187,7 +191,7 @@ cd bruno/WoW\ Item\ Tracker\ API
 
 ```bash
 cd backend
-npm run build  # Si applicable
+npm run build  # If applicable
 npm start
 ```
 
@@ -196,10 +200,10 @@ npm start
 ```bash
 cd frontend
 npm run build
-# Les fichiers seront dans dist/
+# Files will be in dist/
 ```
 
-## 📝 Variables d'Environnement
+## 📝 Environment Variables
 
 ### Backend (.env)
 
@@ -216,18 +220,18 @@ CORS_ORIGIN=https://yourdomain.com
 VITE_API_URL=https://api.yourdomain.com
 ```
 
-## 🤝 Contribution
+## 🤝 Contributing
 
-1. Fork le projet
-2. Créez une branche (`git checkout -b feature/AmazingFeature`)
-3. Commit vos changements (`git commit -m 'Add AmazingFeature'`)
-4. Push sur la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrez une Pull Request
+1. Fork the project
+2. Create a branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📄 Licence
+## 📄 License
 
 ISC
 
-## 👨‍💻 Auteur
+## 👨‍💻 Author
 
-Développé avec ❤️ pour la communauté WoW Anniversary Edition
+Developed with ❤️ for the WoW Anniversary Edition community
