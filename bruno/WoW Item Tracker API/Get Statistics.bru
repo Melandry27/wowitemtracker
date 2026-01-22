@@ -1,0 +1,38 @@
+meta {
+  name: Get Statistics
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{apiUrl}}/items/stats
+  body: none
+  auth: none
+}
+
+docs {
+  # Récupérer les statistiques globales
+  
+  ## Réponse
+  ```json
+  {
+    "success": true,
+    "data": {
+      "totalItems": 25,
+      "ownedItems": 18,
+      "soldItems": 7,
+      "totalInvestment": 3450,
+      "totalRevenue": 1850,
+      "totalProfit": -1600
+    }
+  }
+  ```
+  
+  ## Métriques
+  - `totalItems`: Nombre total d'items
+  - `ownedItems`: Items en possession (non vendus)
+  - `soldItems`: Items vendus
+  - `totalInvestment`: Somme de tous les prix d'achat
+  - `totalRevenue`: Somme des prix de vente
+  - `totalProfit`: Revenue - Investment
+}

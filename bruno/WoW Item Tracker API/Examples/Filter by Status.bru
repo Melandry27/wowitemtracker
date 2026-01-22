@@ -1,0 +1,15 @@
+meta {
+  name: Filter by Status
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{apiUrl}}/items?status=sold
+  body: none
+  auth: none
+}
+
+params:query {
+  status: sold
+}

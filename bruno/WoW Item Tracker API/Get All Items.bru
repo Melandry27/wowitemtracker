@@ -1,0 +1,37 @@
+meta {
+  name: Get All Items
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{apiUrl}}/items
+  body: none
+  auth: none
+}
+
+params:query {
+  ~status: owned
+  ~type: Weapon
+}
+
+vars:pre-request {
+  apiUrl: http://localhost:5000/api
+}
+
+docs {
+  # Récupérer tous les items
+  
+  ## Query Parameters (optionnels)
+  - `status`: owned | sold
+  - `type`: Armor | Weapon | Accessory | Consumable | Crafting Material | Quest Item | Other
+  
+  ## Réponse
+  ```json
+  {
+    "success": true,
+    "count": 10,
+    "data": [...]
+  }
+  ```
+}

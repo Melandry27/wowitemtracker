@@ -1,0 +1,51 @@
+meta {
+  name: Update Item
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{apiUrl}}/items/:id
+  body: json
+  auth: none
+}
+
+params:path {
+  id: 679151c8e4b0a1234567890a
+}
+
+body:json {
+  {
+    "name": "Épée du Chevalier Légendaire",
+    "type": "Weapon",
+    "purchasePrice": 150,
+    "salePrice": 250,
+    "saleDate": "2026-01-23T15:30:00Z"
+  }
+}
+
+docs {
+  # Mettre à jour un item
+  
+  ## Path Parameters
+  - `id`: MongoDB ObjectId de l'item
+  
+  ## Body (JSON)
+  Tous les champs sont optionnels, seuls ceux fournis seront mis à jour.
+  
+  - `name`: Nouveau nom
+  - `type`: Nouveau type
+  - `purchasePrice`: Nouveau prix d'achat
+  - `purchaseDate`: Nouvelle date d'achat
+  - `salePrice`: Prix de vente (pour marquer comme vendu)
+  - `saleDate`: Date de vente
+  
+  ## Réponse
+  ```json
+  {
+    "success": true,
+    "data": {...},
+    "message": "Item mis à jour avec succès"
+  }
+  ```
+}

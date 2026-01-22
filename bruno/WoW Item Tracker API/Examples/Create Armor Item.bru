@@ -1,0 +1,20 @@
+meta {
+  name: Create Armor Item
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{apiUrl}}/items
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Plastron du Gardien",
+    "type": "Armor",
+    "purchasePrice": 320,
+    "purchaseDate": "2026-01-20T14:00:00Z"
+  }
+}
